@@ -98,20 +98,30 @@ window.onload = function() {
             });
         });
         
-        // Handle quick links
-        quickLinks.forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const documentId = this.getAttribute('data-document');
-                if (documentId === 'agent-scorecard') {
-                    // Navigate to Agent Scorecard document
-                    openDocument('agent-behavior', 'Admin', 'System');
-                } else if (documentId === 'qa-results') {
-                    // Navigate to QA Results document
-                    openDocument('qa-approach', 'Content', 'Message Quality');
-                }
-            });
+        // Initialize the subfolder content display for main container
+        document.querySelectorAll('.subfolder-header').forEach(header => {
+            const content = header.nextElementSibling;
+            if (content && content.classList.contains('active')) {
+                content.style.display = 'block';
+            } else if (content) {
+                content.style.display = 'none';
+            }
         });
+        
+        // Handle quick links - Remove the event listeners to let them work as normal hyperlinks
+        // quickLinks.forEach(link => {
+        //     link.addEventListener('click', function(e) {
+        //         e.preventDefault();
+        //         const documentId = this.getAttribute('data-document');
+        //         if (documentId === 'agent-scorecard') {
+        //             // Navigate to Agent Scorecard document
+        //             openDocument('agent-behavior', 'Admin', 'System');
+        //         } else if (documentId === 'qa-results') {
+        //             // Navigate to QA Results document
+        //             openDocument('qa-approach', 'Content', 'Message Quality');
+        //         }
+        //     });
+        // });
         
         function scrollToCategory(category) {
             const categoryElement = document.querySelector(`h2 i.fas.fa-${category === 'admin' ? 'shield-alt' : 'book'}`).parentNode;
@@ -193,44 +203,55 @@ window.onload = function() {
             });
         }        
         
-        // Quick links functionality
-        document.querySelectorAll('.quick-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const documentId = this.getAttribute('data-document');
-                
-                // Handle specific quick links
-                if (documentId === 'agent-scorecard') {
-                    window.location.href = 'viewer.html?id=agent-behavior&type=doc&title=Agent%20Scorecard';
-                } else if (documentId === 'qa-results') {
-                    window.location.href = 'viewer.html?id=qa-approach&type=doc&title=QA%20Results';
-                }
-            });
-        });
+        // Quick links functionality - Remove the event listeners to let them work as normal hyperlinks
+        // document.querySelectorAll('.quick-link').forEach(link => {
+        //     link.addEventListener('click', function(e) {
+        //         e.preventDefault();
+        //         const documentId = this.getAttribute('data-document');
+        //         
+        //         // Handle specific quick links
+        //         if (documentId === 'agent-scorecard') {
+        //             window.location.href = 'viewer.html?id=agent-behavior&type=doc&title=Agent%20Scorecard';
+        //         } else if (documentId === 'qa-results') {
+        //             window.location.href = 'viewer.html?id=qa-approach&type=doc&title=QA%20Results';
+        //         }
+        //     });
+        // });
     }
 
     // --- Main content subfolder toggle logic ---
     document.addEventListener('DOMContentLoaded', function() {
+        // Initialize all subfolder headers to toggle properly
         document.querySelectorAll('.subfolder-header').forEach(header => {
             header.addEventListener('click', function(e) {
                 e.stopPropagation();
-                // Only one subfolder open at a time
-                const parent = header.parentElement.parentElement;
-                parent.querySelectorAll('.subfolder .folder-content').forEach(content => {
-                    if (content !== header.nextElementSibling) {
-                        content.classList.remove('active');
-                        content.style.display = 'none';
-                    }
-                });
+                
+                // Find the parent folder and close other subfolders
+                const parentFolder = header.closest('.folder');
+                if (parentFolder) {
+                    const allSubfolders = parentFolder.querySelectorAll('.subfolder .folder-content');
+                    allSubfolders.forEach(content => {
+                        if (content !== header.nextElementSibling) {
+                            content.classList.remove('active');
+                            content.style.display = 'none';
+                            const siblingHeader = content.previousElementSibling;
+                            if (siblingHeader) {
+                                siblingHeader.classList.remove('active');
+                            }
+                        }
+                    });
+                }
+                
+                // Toggle the clicked subfolder
                 header.classList.toggle('active');
                 const content = header.nextElementSibling;
                 content.classList.toggle('active');
+                
+                // Force display block/none for immediate visibility
                 if (content.classList.contains('active')) {
                     content.style.display = 'block';
                 } else {
-                    setTimeout(() => {
-                        content.style.display = 'none';
-                    }, 300);
+                    content.style.display = 'none';
                 }
             });
         });

@@ -193,17 +193,15 @@
                             </a>
                             <a href="viewer.html?id=technical-settings-id&type=presentation&title=Technical Settings" class="sidebar-file">
                                 <i class="fas fa-file-powerpoint"></i> Technical Settings
-                                                                 </a>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                     <div class="sidebar-submenu-item" data-folder="compliance">
-                         Compliance
-                         <div class="sidebar-file-list">
-                             <!-- Files will be added here -->
-                         </div>
-                     </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="sidebar-submenu-item" data-folder="compliance">
+                        Compliance
+                        <div class="sidebar-file-list">
+                            <!-- Files will be added here -->
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -218,8 +216,8 @@
     <div class="container">        
         <!-- Quick Links Bar -->
         <div class="quick-links-bar">
-            <a href="#" class="quick-link" data-document="agent-scorecard">Agent Scorecard</a>
-            <a href="#" class="quick-link" data-document="qa-results">QA Results</a>
+            <a href="viewer.html?id=1olKxtscaFT702gQyDccRJ_m3MYW6iaqyW3Oo9rmzjJ4&type=presentation&title=Agent%20Behavior%20and%20Performance" class="quick-link" data-document="agent-scorecard" target="_blank">Agent Scorecard</a>
+            <a href="viewer.html?id=1Dtq1IV2Fe_-nxPvdhEt2wdLwIny8OnUpWiCTyghQN7c&type=presentation&title=QA%20Approach" class="quick-link" data-document="qa-results" target="_blank">QA Results</a>
         </div>
         
         <!-- Animated particles background -->
@@ -445,7 +443,7 @@
                     <div class="folder-content">
                         <!-- Pre-Purchase Subfolder -->
                         <div class="subfolder">
-                            <div class="subfolder-header" onclick="toggleFolder(this)">
+                            <div class="subfolder-header">
                                 <i class="fas fa-folder"></i>
                                 <span>Pre-Purchase</span>
                                 <i class="fas fa-chevron-down folder-arrow"></i>
@@ -472,7 +470,7 @@
                         
                         <!-- Post-Purchase Subfolder -->
                         <div class="subfolder">
-                            <div class="subfolder-header" onclick="toggleFolder(this)">
+                            <div class="subfolder-header">
                                 <i class="fas fa-folder"></i>
                                 <span>Post-Purchase</span>
                                 <i class="fas fa-chevron-down folder-arrow"></i>
@@ -487,7 +485,7 @@
                         
                         <!-- General Subfolder -->
                         <div class="subfolder">
-                            <div class="subfolder-header" onclick="toggleFolder(this)">
+                            <div class="subfolder-header">
                                 <i class="fas fa-folder"></i>
                                 <span>General</span>
                                 <i class="fas fa-chevron-down folder-arrow"></i>
@@ -635,6 +633,8 @@
             document.querySelectorAll('.folder-content').forEach(content => {
                 if (!content.classList.contains('active')) {
                     content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
                 }
             });
             
@@ -642,7 +642,34 @@
             document.querySelectorAll('.subfolder-header').forEach(header => {
                 header.addEventListener('click', function(e) {
                     e.stopPropagation(); // Prevent event bubbling to parent folders
-                    toggleFolder(this);
+                    
+                    // Find the parent folder and close other subfolders
+                    const parentFolder = header.closest('.folder');
+                    if (parentFolder) {
+                        const allSubfolders = parentFolder.querySelectorAll('.subfolder .folder-content');
+                        allSubfolders.forEach(content => {
+                            if (content !== header.nextElementSibling) {
+                                content.classList.remove('active');
+                                content.style.display = 'none';
+                                const siblingHeader = content.previousElementSibling;
+                                if (siblingHeader) {
+                                    siblingHeader.classList.remove('active');
+                                }
+                            }
+                        });
+                    }
+                    
+                    // Toggle the clicked subfolder
+                    header.classList.toggle('active');
+                    const content = header.nextElementSibling;
+                    content.classList.toggle('active');
+                    
+                    // Ensure immediate visibility/hiding
+                    if (content.classList.contains('active')) {
+                        content.style.display = 'block';
+                    } else {
+                        content.style.display = 'none';
+                    }
                 });
             });
         });
