@@ -1,7 +1,7 @@
 /* General Styling */
 body {
     font-family: 'Montserrat', sans-serif;
-    background: linear-gradient(-45deg, #fff383, #fff0a8, #fff383, #ffea70, #fff383);
+    background: linear-gradient(-45deg, #fff383, #fff0a8, #fffad1, #fff970, #fff383);
     background-size: 400% 400%;
     animation: gradientShift 15s ease infinite;
     color: #333;
@@ -21,6 +21,45 @@ body {
     100% {
         background-position: 0% 50%;
     }
+}
+
+#searchInput:focus + .search-icon {
+    color: #ffc400;
+}
+
+#searchInput::-webkit-input-placeholder {
+    color: #a0aec0;
+    font-weight: 400;
+}
+
+#searchInput::-moz-placeholder {
+    color: #a0aec0;
+    font-weight: 400;
+}
+
+/* Search Results Styling */
+#searchResultsContainer {
+    margin: 30px auto;
+    transition: all 0.3s ease;
+}
+
+#searchResultsContainer > div:first-child {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f7fafc;
+}
+
+#noResultsMessage {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f7fafc;
+    margin: 20px 0;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 .container {
