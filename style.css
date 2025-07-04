@@ -808,6 +808,7 @@ main h2 {
     top: 0;
     z-index: 100;
     box-shadow: none;
+    transform: translateY(-12px);
 }
 
 .quick-link {
