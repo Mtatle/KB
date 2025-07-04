@@ -805,7 +805,7 @@ main h2 {
     margin-bottom: 30px;
     border-radius: 10px;
     position: sticky;
-    top: 0;
+    top: 15px;
     z-index: 100;
     box-shadow: none;
     transform: translateY(-25px);
