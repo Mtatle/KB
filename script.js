@@ -28,7 +28,65 @@ window.onload = function() {
         // Set the source for the iframe
         if (iframeElement) { // Check if iframeElement is not null
             iframeElement.src = embedUrl;
-        }    
+        }
+
+        // Add sidebar functionality to viewer page
+        const burgerMenu = document.querySelector('.burger-menu');
+        const sidebar = document.querySelector('.sidebar');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
+        const sidebarMenuItems = document.querySelectorAll('.sidebar-menu-item');
+
+        if (burgerMenu && sidebar && sidebarOverlay) {
+            // Toggle sidebar when burger menu is clicked
+            burgerMenu.addEventListener('click', function() {
+                sidebar.classList.toggle('active');
+                burgerMenu.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+            });
+
+            // Close sidebar when clicking outside (on overlay)
+            sidebarOverlay.addEventListener('click', function() {
+                sidebar.classList.remove('active');
+                burgerMenu.classList.remove('active');
+                sidebarOverlay.classList.remove('active');
+            });
+
+            // Toggle submenu when sidebar menu item is clicked
+            sidebarMenuItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const submenu = this.querySelector('.sidebar-submenu');
+                    if (submenu) {
+                        submenu.classList.toggle('active');
+                    }
+                });
+            });
+
+            // Handle submenu item clicks
+            document.querySelectorAll('.sidebar-submenu-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const fileList = this.querySelector('.sidebar-file-list');
+                    const subfolderList = this.querySelector('.sidebar-subfolder-list');
+                    if (fileList && !subfolderList) {
+                        fileList.style.display = fileList.style.display === 'none' ? 'block' : 'none';
+                    }
+                    if (subfolderList) {
+                        subfolderList.style.display = subfolderList.style.display === 'none' ? 'block' : 'none';
+                    }
+                });
+            });
+
+            // Handle subfolder item clicks
+            document.querySelectorAll('.sidebar-subfolder-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    const fileList = this.querySelector('.sidebar-file-list');
+                    if (fileList) {
+                        fileList.style.display = fileList.style.display === 'none' ? 'block' : 'none';
+                    }
+                });
+            });
+        }
     } else { // Code for index.html, as docId will be null
         // --- Sidebar Navigation Logic ---
         const burgerMenu = document.querySelector('.burger-menu');

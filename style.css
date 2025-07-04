@@ -437,6 +437,19 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     background: #fff;
 }
 
+/* Ensure burger menu is visible on viewer page */
+.viewer-body .burger-menu {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
 /* Animated Particles */
 .particles {
     position: absolute;
