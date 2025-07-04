@@ -109,17 +109,20 @@ window.onload = function() {
         });
         
         // Handle quick links - Remove the event listeners to let them work as normal hyperlinks
-        // quickLinks.forEach(link => {
-        //     link.addEventListener('click', function(e) {
-        //         e.preventDefault();
-        //         const documentId = this.getAttribute('data-document');
-        //         if (documentId === 'agent-scorecard') {
-        //             // Navigate to Agent Scorecard document
-        //             openDocument('agent-behavior', 'Admin', 'System');
-        //         } else if (documentId === 'qa-results') {
-        //             // Navigate to QA Results document
-        //             openDocument('qa-approach', 'Content', 'Message Quality');
-        //         }
+        quickLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Don't prevent default since we're using direct links with target="_blank"
+                // e.preventDefault();
+                // const documentId = this.getAttribute('data-document');
+                // if (documentId === 'agent-scorecard') {
+                //     // Navigate to Agent Scorecard document
+                //     openDocument('agent-behavior', 'Admin', 'System');
+                // } else if (documentId === 'qa-results') {
+                //     // Navigate to QA Results document
+                //     openDocument('qa-approach', 'Content', 'Message Quality');
+                // }
+            });
+        });
         //     });
         // });
         
@@ -675,6 +678,7 @@ window.onload = function() {
         }
         
         // Quick links functionality - Remove the event listeners to let them work as normal hyperlinks
+        // We're using direct href links now with target="_blank", so this is no longer needed
         // document.querySelectorAll('.quick-link').forEach(link => {
         //     link.addEventListener('click', function(e) {
         //         e.preventDefault();
@@ -683,11 +687,6 @@ window.onload = function() {
         //         // Handle specific quick links
         //         if (documentId === 'agent-scorecard') {
         //             window.location.href = 'viewer.html?id=agent-behavior&type=doc&title=Agent%20Scorecard';
-        //         } else if (documentId === 'qa-results') {
-        //             window.location.href = 'viewer.html?id=qa-approach&type=doc&title=QA%20Results';
-        //         }
-        //     });
-        // });
     }
 
     // --- Main content subfolder toggle logic ---
