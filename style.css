@@ -802,13 +802,13 @@ main h2 {
     justify-content: center;
     padding: 5px 0 5px 0;
     background: transparent;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     border-radius: 10px;
     position: sticky;
     top: 0;
     z-index: 100;
     box-shadow: none;
-    transform: translateY(-12px);
+    transform: translateY(-25px);
 }
 
 .quick-link {
