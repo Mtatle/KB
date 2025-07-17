@@ -822,13 +822,13 @@ main h2 {
     display: flex;
     justify-content: center;
     padding: 5px 0 5px 0;
-    background: transparent;
+    background: white;
     margin-bottom: 30px;
     border-radius: 10px;
     position: sticky;
-    top: 15px;
+    top: 25px;
     z-index: 100;
-    box-shadow: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     transform: translateY(-25px);
 }
 
