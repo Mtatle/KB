@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Based Training - Knowledge Base</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome for folder icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3>Self-Based Training</h3>
+        </div>
+        <div class="sidebar-menu">
+            <!-- Training Modules Category -->
+            <div class="sidebar-menu-item" data-category="modules">
+                <i class="fas fa-graduation-cap"></i> Training Modules
+                <div class="sidebar-submenu">
+                    <div class="sidebar-submenu-item" data-folder="module-1">
+                        Module 1
+                        <div class="sidebar-file-list">
+                            <!-- Files will be added here -->
+                        </div>
+                    </div>
+                    <div class="sidebar-submenu-item" data-folder="module-2">
+                        Module 2
+                        <div class="sidebar-file-list">
+                            <!-- Files will be added here -->
+                        </div>
+                    </div>
+                    <div class="sidebar-submenu-item" data-folder="module-3">
+                        Module 3
+                        <div class="sidebar-file-list">
+                            <!-- Files will be added here -->
+                        </div>
+                    </div>
+                    <div class="sidebar-submenu-item" data-folder="module-4">
+                        Module 4
+                        <div class="sidebar-file-list">
+                            <!-- Files will be added here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay"></div>
+
+        <!-- Burger menu button -->
+        <div class="burger-menu">
+            <div class="burger-icon"></div>
+        </div>
+        
+    <div class="container">        
+        <!-- Quick Links Bar -->
+        <div class="quick-links-bar">
+            <a href="index.html" class="quick-link" data-document="back-home">
+                <i class="fas fa-home"></i>
+                Back to Knowledge Base
+            </a>
+            <a href="https://docs.google.com/spreadsheets/d/1yCED0XJby-JA-kXa86O9xqSoCzGlLPn7rIRe6PUj1Y4/edit?gid=1044732769#gid=1044732769" class="quick-link" data-document="agent-scorecard" target="_blank">Agent Scorecard</a>
+            <a href="https://docs.google.com/spreadsheets/d/1Uiv7335gcBz8auyi54ONRaFC_UVUykA4OD3f4rmaIiM/edit?gid=952863304#gid=952863304" class="quick-link" data-document="qa-results" target="_blank">QA Results</a>
+        </div>
+        
+        <!-- Animated particles background -->
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        
+        <header>
+            <img src="logo.png" alt="Logo" class="logo-image">
+            <h1>Self-Based Training</h1>
+            <p>Enhance your skills with our comprehensive training modules.</p>
+            
+            <!-- Modern search with icon -->
+            <div class="search-container">
+                <div class="search-wrapper">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <input type="text" id="searchInput" placeholder="Search training modules...">
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <div id="searchResultsContainer" style="display: none;"></div>
+            
+            <!-- Training Modules Category -->
+            <h2><i class="fas fa-graduation-cap category-icon"></i> Training Modules</h2>
+            <div class="folder-container">
+                <!-- Module 1 Folder -->
+                <div class="folder">
+                    <div class="folder-header" onclick="toggleFolder(this)">
+                        <i class="fas fa-folder"></i>
+                        <span>Module 1</span>
+                        <i class="fas fa-chevron-down folder-arrow"></i>
+                    </div>
+                    <div class="folder-content">
+                        <a href="viewer.html?id=1olKxtscaFT702gQyDccRJ_m3MYW6iaqyW3Oo9rmzjJ4&type=presentation&title=Performance Tracking & Support Tools&quiz=1uc8VVay3VsTWdBlHZBeVojnKSuo4WElQaiSvfRBvlcY&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Performance Tracking & Support Tools</span>
+                        </a>
+                        <a href="viewer.html?id=1vqhJEJKPffTT8I5z2anpyVHpqMc-GHXe9U79zgdZfrk&type=presentation&title=Website Navigation & Research Process&quiz=1j8mQg06tEznwNKbh8Clhe8ADJFw1uIGfeNFXbYJYmkY&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Website Navigation & Research Process</span>
+                        </a>
+                        <a href="viewer.html?id=1Qy3__PYg__gjNi7LMsw9bpnPj9MsK7Chwlg-dh4qa_k&type=presentation&title=Templates & Notes&quiz=103cdVsuxlMg13ZETDq1tIQcUIdi57uPIzueLKtFjPIU&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Templates & Notes</span>
+                        </a>
+                        <a href="viewer.html?id=1rARWcKeZKqv-h_y-uiYrUDyhhtf0Iy8SnqLr_audy_U&type=presentation&title=When to Mark as Do Not Respond&quiz=1M8WexxavK78aA4pf8540X8OaW_AOr5znCJOqcBrTACY&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>When to Mark as Do Not Respond</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Module 2 Folder -->
+                <div class="folder">
+                    <div class="folder-header" onclick="toggleFolder(this)">
+                        <i class="fas fa-folder"></i>
+                        <span>Module 2</span>
+                        <i class="fas fa-chevron-down folder-arrow"></i>
+                    </div>
+                    <div class="folder-content">
+                        <a href="viewer.html?id=1r9mTN_Mgc9_QjoF1OvWhMNgr9MoaF2BsMgZEhzjqfxs&type=presentation&title=Driving to Purchase & Links&quiz=1F1YOGatMkOPCxO2s78tvVImNXsj77yrWz2IN2pIlkZY&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Driving to Purchase & Links</span>
+                        </a>
+                        <a href="viewer.html?id=1SSliJGLwg6srjDmqwUtSsVDhAdCBQSWDfmRPToM9yyE&type=presentation&title=Discounts, Rewards, and Promo Codes&quiz=1PimzX0zM4Jq-XoGUZnQ2hDgKYRFft7amO-OcFMssQSk&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Discounts, Rewards, and Promo Codes</span>
+                        </a>
+                        <a href="viewer.html?id=1MkPhItX5zQC6xWitpRl49P2zol9z1SjbwPR8LADkLKk&type=presentation&title=Shipping Options and Delivery&quiz=11RyXQEqnssS-vAnGQ-yGCL0nhEKIBDbrsUa3cIwYGrY&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Shipping Options and Delivery</span>
+                        </a>
+                        <a href="viewer.html?id=1niTTES92AD7eFtSaKr2j3sXAMsR5MMRCKh8VbxYungY&type=presentation&title=Payments & Accounts&quiz=1hb4rh3Ja4_sa2OECaeR7AC0GRaDfDnuvmC85BElGaDI&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Payments & Accounts</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Module 3 Folder -->
+                <div class="folder">
+                    <div class="folder-header" onclick="toggleFolder(this)">
+                        <i class="fas fa-folder"></i>
+                        <span>Module 3</span>
+                        <i class="fas fa-chevron-down folder-arrow"></i>
+                    </div>
+                    <div class="folder-content">
+                        <a href="viewer.html?id=1hmZHxSn6p5gusRkCV-KxNFcRkEJUmasyeSATIsi6fBs&type=presentation&title=Returns, Exchanges, and Warranties&quiz=1KHj1hr7EyT4SIjALkzHfwsT9d3PgeiuJ24GmeCdQ8Uo&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Returns, Exchanges, and Warranties</span>
+                        </a>
+                        <a href="viewer.html?id=17lJ5yL5Q4snbWlbs_x1_08Mx9ghvQD8F5UHT3IvGf7s&type=presentation&title=Escalations and Redirecting to CS&quiz=1RSUl45KEIRpAAnfkPfqJVvbTq9vjS_ktnhxAv80eBUA&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Escalations and Redirecting to CS</span>
+                        </a>
+                        <a href="viewer.html?id=1TzTq8ZwSNYWXIgJ93X6TURxEydkPkEiKJnrfGSaA8YA&type=presentation&title=Customer Engagement Techniques&quiz=1aN9vlTcIKb3PB54-8FUJQA8AGU49m6XjvWXPU24HzsA&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Customer Engagement Techniques</span>
+                        </a>
+                        <a href="viewer.html?id=1GPwyy4Y0hAq9HIrSJ-0XPcb9kPOz7kGDR6nIRF6xMhw&type=presentation&title=Cancelling and Editing Orders&quiz=1an6hq-1h-G3bOOcMxPmZZErJ10zyeZlYj4ZSZmXDwhk&training=true" class="file-button">
+                            <i class="fas fa-file-powerpoint"></i>
+                            <span>Cancelling and Editing Orders</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Training Progress Section -->
+            <h2><i class="fas fa-chart-line category-icon"></i> Your Progress</h2>
+            <div class="folder-container">
+                <div class="folder">
+                    <div class="folder-header" onclick="toggleFolder(this)">
+                        <i class="fas fa-folder"></i>
+                        <span>Progress Tracking</span>
+                        <i class="fas fa-chevron-down folder-arrow"></i>
+                    </div>
+                    <div class="folder-content">
+                        <a href="viewer.html?id=REPLACE_WITH_PROGRESS_TRACKER_ID&type=doc&title=Training Progress Tracker" class="file-button">
+                            <i class="fas fa-file-alt"></i>
+                            <span>Progress Tracker</span>
+                        </a>
+                        <a href="viewer.html?id=REPLACE_WITH_CERTIFICATES_ID&type=doc&title=Certificates & Achievements" class="file-button">
+                            <i class="fas fa-certificate"></i>
+                            <span>Certificates & Achievements</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Main script -->
+    <script src="script.js"></script>
+    
+    <!-- Folder toggle functionality -->
+    <script>
+        function toggleFolder(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+            
+            // Animate the folder content
+            if (content.classList.contains('active')) {
+                content.style.display = 'block';
+            } else {
+                setTimeout(() => {
+                    content.style.display = 'none';
+                }, 300);
+            }
+        }
+        
+        // Hide all folder content on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.folder-content').forEach(content => {
+                if (!content.classList.contains('active')) {
+                    content.style.display = 'none';
+                } else {
+                    content.style.display = 'block';
+                }
+            });
+            
+            // Initialize all subfolder headers to toggle properly
+            document.querySelectorAll('.subfolder-header').forEach(header => {
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event bubbling to parent folders
+                    
+                    // Find the parent folder and close other subfolders
+                    const parentFolder = header.closest('.folder');
+                    if (parentFolder) {
+                        const allSubfolders = parentFolder.querySelectorAll('.subfolder .folder-content');
+                        allSubfolders.forEach(content => {
+                            if (content !== header.nextElementSibling) {
+                                content.classList.remove('active');
+                                content.style.display = 'none';
+                                const siblingHeader = content.previousElementSibling;
+                                if (siblingHeader) {
+                                    siblingHeader.classList.remove('active');
+                                }
+                            }
+                        });
+                    }
+                    
+                    // Toggle the clicked subfolder
+                    header.classList.toggle('active');
+                    const content = header.nextElementSibling;
+                    content.classList.toggle('active');
+                    
+                    // Ensure immediate visibility/hiding
+                    if (content.classList.contains('active')) {
+                        content.style.display = 'block';
+                    } else {
+                        content.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

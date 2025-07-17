@@ -405,13 +405,18 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     background: #fff;
     padding: 16px 24px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .viewer-header h1 {
     font-size: 1.2rem;
-    margin: 0 auto;
+    margin: 0;
     color: #000;
     font-weight: 700;
+    flex-grow: 1;
+    text-align: center;
 }
 
 .back-button {
@@ -419,6 +424,22 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     color: #007bff;
     text-decoration: none;
     font-weight: 600;
+}
+
+.quiz-button {
+    font-size: 0.9rem;
+    color: #fff;
+    background-color: #ffc400;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+    cursor: pointer;
+}
+
+.quiz-button:hover {
+    background-color: #e6b000;
 }
 
 .iframe-container {

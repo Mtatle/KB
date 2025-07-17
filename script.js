@@ -4,6 +4,8 @@ window.onload = function() {
     const docId = urlParams.get('id');
     const docType = urlParams.get('type');
     const docTitle = urlParams.get('title');
+    const quizId = urlParams.get('quiz');
+    const isTraining = urlParams.get('training');
 
     let embedUrl = '';
 
@@ -12,6 +14,8 @@ window.onload = function() {
         embedUrl = `https://docs.google.com/document/d/${docId}/preview`;
     } else if (docType === 'presentation') {
         embedUrl = `https://docs.google.com/presentation/d/${docId}/embed?start=false&loop=false&delayms=3000`;
+    } else if (docType === 'form') {
+        embedUrl = `https://docs.google.com/forms/d/${docId}/viewform?embedded=true`;
     }
 
     // Update the page with the correct title and iframe source
@@ -28,6 +32,23 @@ window.onload = function() {
         // Set the source for the iframe
         if (iframeElement) { // Check if iframeElement is not null
             iframeElement.src = embedUrl;
+        }
+
+        // Handle quiz section for training presentations
+        if (isTraining === 'true' && quizId) {
+            const quizButton = document.getElementById('quiz-button');
+            
+            if (quizButton) {
+                // Show the quiz button
+                quizButton.style.display = 'inline-block';
+                quizButton.textContent = docTitle + ' Quiz';
+                
+                // Add click handler to open quiz
+                quizButton.addEventListener('click', function() {
+                    const quizUrl = `viewer.html?id=${quizId}&type=form&title=${encodeURIComponent(docTitle + ' Quiz')}`;
+                    window.location.href = quizUrl;
+                });
+            }
         }
 
         // Add sidebar functionality to viewer page
