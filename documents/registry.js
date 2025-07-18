@@ -35,6 +35,15 @@ class DocumentRegistry {
                     compliance: { title: "Compliance", documents: [] }
                 },
                 documents: [] // For documents directly under content
+            },
+            training: {
+                title: "Training",
+                folders: {
+                    module1: { title: "Module 1", documents: [] },
+                    module2: { title: "Module 2", documents: [] },
+                    module3: { title: "Module 3", documents: [] }
+                },
+                documents: [] // For documents directly under training
             }
         };
         console.log('DocumentRegistry initialized with categories and folders');
