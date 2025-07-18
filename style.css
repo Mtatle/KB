@@ -623,6 +623,28 @@ main h2 {
     display: block;
 }
 
+.subfolder .subfolder-content {
+    display: none;
+    margin-left: 15px;
+    padding-left: 10px;
+    border-left: 2px dashed rgba(255, 243, 129, 0.7);
+}
+
+.subfolder .subfolder-content.active {
+    display: block;
+}
+
+.subfolder .subfolder-content {
+    display: none;
+    margin-left: 15px;
+    padding-left: 10px;
+    border-left: 2px dashed rgba(255, 243, 129, 0.7);
+}
+
+.subfolder .subfolder-content.active {
+    display: block;
+}
+
 /* Sidebar Navigation */
 .sidebar {
     position: fixed;

@@ -92,11 +92,17 @@ window.onload = function() {
                     e.stopPropagation();
                     const fileList = this.querySelector('.sidebar-file-list');
                     const subfolderList = this.querySelector('.sidebar-subfolder-list');
+                    
+                    // Handle regular folders (with file lists)
                     if (fileList && !subfolderList) {
-                        fileList.style.display = fileList.style.display === 'none' ? 'block' : 'none';
+                        const currentDisplay = window.getComputedStyle(fileList).display;
+                        fileList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                     }
+                    
+                    // Handle folders with subfolders (like Conversation Topics)
                     if (subfolderList) {
-                        subfolderList.style.display = subfolderList.style.display === 'none' ? 'block' : 'none';
+                        const currentDisplay = window.getComputedStyle(subfolderList).display;
+                        subfolderList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                     }
                 });
             });
@@ -107,7 +113,8 @@ window.onload = function() {
                     e.stopPropagation();
                     const fileList = this.querySelector('.sidebar-file-list');
                     if (fileList) {
-                        fileList.style.display = fileList.style.display === 'none' ? 'block' : 'none';
+                        const currentDisplay = window.getComputedStyle(fileList).display;
+                        fileList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                     }
                 });
             });
@@ -161,11 +168,17 @@ window.onload = function() {
                 // Toggle file list or subfolder list visibility
                 const fileList = this.querySelector('.sidebar-file-list');
                 const subfolderList = this.querySelector('.sidebar-subfolder-list');
+                
+                // Handle regular folders (with file lists)
                 if (fileList && !subfolderList) {
-                    fileList.style.display = fileList.style.display === 'none' ? 'block' : 'none';
+                    const currentDisplay = window.getComputedStyle(fileList).display;
+                    fileList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                 }
+                
+                // Handle folders with subfolders (like Conversation Topics)
                 if (subfolderList) {
-                    subfolderList.style.display = subfolderList.style.display === 'none' ? 'block' : 'none';
+                    const currentDisplay = window.getComputedStyle(subfolderList).display;
+                    subfolderList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                 }
             });
         });
@@ -176,7 +189,8 @@ window.onload = function() {
                 e.stopPropagation();
                 const fileList = this.querySelector('.sidebar-file-list');
                 if (fileList) {
-                    fileList.style.display = fileList.style.display === 'none' ? 'block' : 'none';
+                    const currentDisplay = window.getComputedStyle(fileList).display;
+                    fileList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                 }
             });
         });
@@ -626,7 +640,7 @@ window.onload = function() {
                 // Find the parent folder and close other subfolders
                 const parentFolder = header.closest('.folder');
                 if (parentFolder) {
-                    const allSubfolders = parentFolder.querySelectorAll('.subfolder .folder-content');
+                    const allSubfolders = parentFolder.querySelectorAll('.subfolder .subfolder-content');
                     allSubfolders.forEach(content => {
                         if (content !== header.nextElementSibling) {
                             content.classList.remove('active');
@@ -653,6 +667,20 @@ window.onload = function() {
             });
         });
     });
+
+    // Global function for subfolder toggle (referenced in HTML)
+    function toggleSubfolder(header) {
+        header.classList.toggle('active');
+        const content = header.nextElementSibling;
+        content.classList.toggle('active');
+        
+        // Force display block/none for immediate visibility
+        if (content.classList.contains('active')) {
+            content.style.display = 'block';
+        } else {
+            content.style.display = 'none';
+        }
+    }
 
     // --- Burger menu movement logic ---
     window.addEventListener('DOMContentLoaded', function() {
