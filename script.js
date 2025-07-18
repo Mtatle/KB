@@ -95,13 +95,15 @@ window.onload = function() {
                     
                     // Handle regular folders (with file lists)
                     if (fileList && !subfolderList) {
-                        const currentDisplay = window.getComputedStyle(fileList).display;
+                        // Ensure we have an explicit display value
+                        const currentDisplay = fileList.style.display || window.getComputedStyle(fileList).display;
                         fileList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                     }
                     
                     // Handle folders with subfolders (like Conversation Topics)
                     if (subfolderList) {
-                        const currentDisplay = window.getComputedStyle(subfolderList).display;
+                        // Ensure we have an explicit display value
+                        const currentDisplay = subfolderList.style.display || window.getComputedStyle(subfolderList).display;
                         subfolderList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                     }
                 });
@@ -117,6 +119,20 @@ window.onload = function() {
                         fileList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                     }
                 });
+            });
+            
+            // Initialize sidebar file lists to ensure they start hidden
+            document.querySelectorAll('.sidebar-file-list').forEach(fileList => {
+                if (!fileList.style.display) {
+                    fileList.style.display = 'none';
+                }
+            });
+            
+            // Initialize sidebar subfolder lists to ensure they start hidden
+            document.querySelectorAll('.sidebar-subfolder-list').forEach(subfolderList => {
+                if (!subfolderList.style.display) {
+                    subfolderList.style.display = 'none';
+                }
             });
         }
     } else { // Code for index.html, as docId will be null
@@ -171,13 +187,15 @@ window.onload = function() {
                 
                 // Handle regular folders (with file lists)
                 if (fileList && !subfolderList) {
-                    const currentDisplay = window.getComputedStyle(fileList).display;
+                    // Ensure we have an explicit display value
+                    const currentDisplay = fileList.style.display || window.getComputedStyle(fileList).display;
                     fileList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                 }
                 
                 // Handle folders with subfolders (like Conversation Topics)
                 if (subfolderList) {
-                    const currentDisplay = window.getComputedStyle(subfolderList).display;
+                    // Ensure we have an explicit display value
+                    const currentDisplay = subfolderList.style.display || window.getComputedStyle(subfolderList).display;
                     subfolderList.style.display = currentDisplay === 'none' ? 'block' : 'none';
                 }
             });
@@ -202,6 +220,20 @@ window.onload = function() {
                 content.style.display = 'block';
             } else if (content) {
                 content.style.display = 'none';
+            }
+        });
+        
+        // Initialize sidebar file lists to ensure they start hidden
+        document.querySelectorAll('.sidebar-file-list').forEach(fileList => {
+            if (!fileList.style.display) {
+                fileList.style.display = 'none';
+            }
+        });
+        
+        // Initialize sidebar subfolder lists to ensure they start hidden
+        document.querySelectorAll('.sidebar-subfolder-list').forEach(subfolderList => {
+            if (!subfolderList.style.display) {
+                subfolderList.style.display = 'none';
             }
         });
         

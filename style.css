@@ -651,13 +651,15 @@ main h2 {
     left: -300px;
     top: 0;
     width: 300px;
-    height: 100%;
+    height: 100vh;
     background-color: #ffffff;
     box-shadow: 2px 0 15px rgba(0,0,0,0.1);
     transition: left 0.3s ease;
     z-index: 1000;
     overflow-y: auto;
     padding-bottom: 50px;
+    display: flex;
+    flex-direction: column;
 }
 
 .sidebar.active {
@@ -705,7 +707,7 @@ main h2 {
 }
 
 .sidebar-submenu.active {
-    max-height: 1000px;
+    max-height: 2000px;
     transition: max-height 0.5s ease-in;
 }
 
