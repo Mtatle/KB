@@ -16,6 +16,10 @@ window.onload = function() {
         embedUrl = `https://docs.google.com/presentation/d/${docId}/embed?start=false&loop=false&delayms=3000`;
     } else if (docType === 'form') {
         embedUrl = `https://docs.google.com/forms/d/${docId}/viewform?embedded=true`;
+    } else if (docType === 'pdf') {
+        embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
+    } else if (docType === 'video') {
+        embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
     }
 
     // Update the page with the correct title and iframe source
