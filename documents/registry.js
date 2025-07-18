@@ -15,27 +15,29 @@ class DocumentRegistry {
                 },
                 documents: [] // For documents directly under admin
             },
-            content: {
-                title: "Content",
-                folders: {
-                    navigation: { title: "Navigation", documents: [] },
-                    messageQuality: { title: "Message Quality", documents: [] },
-                    intro: { title: "Intro", documents: [] },
-                    eventQuality: { title: "Event Quality", documents: [] },
-                    conversationTopics: { 
-                        title: "Conversation Topics", 
-                        subfolders: {
-                            prePurchase: { title: "Pre-Purchase", documents: [] },
-                            postPurchase: { title: "Post-Purchase", documents: [] },
-                            general: { title: "General", documents: [] }
+                            content: {
+                    title: "Content",
+                    folders: {
+                        navigation: { title: "Navigation", documents: [] },
+                        messageQuality: { title: "Message Quality", documents: [] },
+                        intro: { title: "Intro", documents: [] },
+                        content: { title: "Content", documents: [] },
+                        eventQuality: { title: "Event Quality", documents: [] },
+                        conversationTopics: {
+                            title: "Conversation Topics",
+                            subfolders: {
+                                prePurchase: { title: "Pre-Purchase", documents: [] },
+                                postPurchase: { title: "Post-Purchase", documents: [] },
+                                general: { title: "General", documents: [] }
+                            },
+                            documents: []
                         },
-                        documents: []
+                        introToConcierge: { title: "Intro to Concierge", documents: [] },
+                        compliance: { title: "Compliance", documents: [] },
+                        standardWorkflows: { title: "Standard Workflows", documents: [] }
                     },
-                    conciergeAgent101: { title: "Concierge Agent 101", documents: [] },
-                    compliance: { title: "Compliance", documents: [] }
+                    documents: [] // For documents directly under content
                 },
-                documents: [] // For documents directly under content
-            },
             training: {
                 title: "Training",
                 folders: {
