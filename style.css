@@ -405,9 +405,10 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     background: #fff;
     padding: 16px 24px;
     box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    justify-content: space-between;
+    gap: 16px;
 }
 
 .viewer-header h1 {
@@ -415,8 +416,8 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     margin: 0;
     color: #000;
     font-weight: 700;
-    flex-grow: 1;
     text-align: center;
+    grid-column: 2;
 }
 
 .back-button {
@@ -425,6 +426,8 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     text-decoration: none;
     font-weight: 600;
     margin-left: 80px; /* Add space to avoid overlap with burger menu */
+    grid-column: 1;
+    justify-self: start;
 }
 
 .quiz-button {
@@ -437,6 +440,8 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     border-radius: 6px;
     transition: background-color 0.2s ease;
     cursor: pointer;
+    grid-column: 3;
+    justify-self: end;
 }
 
 .quiz-button:hover {
