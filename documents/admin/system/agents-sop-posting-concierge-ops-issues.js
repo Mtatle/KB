@@ -1,6 +1,6 @@
 // Document content for Agents SOP for Posting in #concierge-ops-issues
 const agentsSopPostingConciergeOpsIssuesContent = {
-    id: '1c9pL9gMMSaHoHq4UWBtnEgH_w8h7aCsjfBsd24WvRyQ',
+    id: '1ij_dlttVQkVhNBvLd2jjNSJ-fKwER4MgW2LY9DVRtr4',
     title: 'Agents SOP for Posting in #concierge-ops-issues',
     type: 'doc',
     description: 'Standard Operating Procedure for agents posting in concierge operations issues channel',
