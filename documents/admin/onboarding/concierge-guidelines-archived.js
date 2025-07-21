@@ -8,5 +8,5 @@ window.documentRegistry["129Iu6BB6Gj8SKvmt8HWTyheEV-C03OQBJPtFO3uv3C0"] = {
     folder: "onboarding",
     tags: ["concierge", "guidelines", "archived", "onboarding", "training"],
     description: "Archived concierge guidelines for reference",
-    content: "Archived version of concierge guidelines for historical reference and training purposes."
+    content: "Concierge Guidelines - ARCHIVED - Comprehensive archived guide covering agent communication, QA dispute process, schedule changes, tech issues, and assistance channels for reference purposes."
 }; 

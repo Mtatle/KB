@@ -8,5 +8,5 @@ window.documentRegistry["1h_tq3gIEHiymN3iW3C0XrZvLDeLovVEdftJcQZtstQE"] = {
     folder: "kpis",
     tags: ["concierge", "agent", "event", "qa", "quality assurance", "kpis"],
     description: "Quality assurance guidelines and processes for concierge agent events",
-    content: "Concierge Agent Event QA presentation covering quality assurance standards and procedures for agent events."
+    content: "Event QA Audit - Comprehensive guide covering quality assurance guidelines and processes for concierge agent events including blocking, escalating, unsubscribing, closing chats, double texting, and unnecessary replies."
 }; 

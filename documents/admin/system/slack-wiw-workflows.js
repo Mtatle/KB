@@ -8,5 +8,5 @@ window.documentRegistry["1A2lnqVs5rfvxsh4U8qduczgTUIDjXDIyq23G-aoFjfI"] = {
     folder: "system",
     tags: ["slack", "wiw", "when i work", "workflows", "systems", "processes"],
     description: "Workflow processes for Slack and When I Work integration",
-    content: "Comprehensive guide to Slack and When I Work workflows, processes, and best practices for concierge operations."
+    content: "Slack & WIW Workflows - Comprehensive guide covering Slack workflows, When I Work platform usage, SOPs, tech issues, ops issues, and daily tracking procedures for concierge agents."
 }; 

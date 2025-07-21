@@ -8,5 +8,5 @@ window.documentRegistry["1ZSbFsS6EaKqrQ1mSCWS74LVCjfDJ6os0xjSJj7bywdQ"] = {
     folder: "onboarding",
     tags: ["new wave", "introduction", "onboarding", "training", "concierge"],
     description: "Introduction to New Wave processes and procedures",
-    content: "Comprehensive introduction to New Wave systems, processes, and procedures for new concierge agents."
+    content: "New Wave Introduction - Comprehensive guide covering organizational structure, agent expectations, glidepath training, team leads, knowledge base, and self-based training modules for new concierge agents."
 }; 
