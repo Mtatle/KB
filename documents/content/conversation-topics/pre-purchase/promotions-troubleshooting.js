@@ -1,10 +1,13 @@
-// Document content for Discounts
-const discountsContent = {
-    id: '1qJM9406IKWMnC3vbNRHMTLHTRNTDixNQRflBonFNZ_8',
-    title: 'Discounts',
-    type: 'doc',
-    description: 'Information about discount policies',
-    tags: ['discounts', 'promotions', 'savings', 'offers'],
+// Promotions Troubleshooting - Conversation Topics > Pre-Purchase
+window.documentRegistry = window.documentRegistry || {};
+window.documentRegistry["1qJM9406IKWMnC3vbNRHMTLHTRNTDixNQRflBonFNZ_8"] = {
+    id: "1qJM9406IKWMnC3vbNRHMTLHTRNTDixNQRflBonFNZ_8",
+    title: "Promotions Troubleshooting",
+    type: "doc",
+    category: "content",
+    folder: "conversation-topics",
+    subfolder: "pre-purchase",
+    tags: ["promotions", "troubleshooting", "pre-purchase", "document", "discounts"],
     content: `Promotions Troubleshooting  
 Discounts and promotions are reductions of the regular price of a product or service to obtain or increase sales. Brands often offer them in the form of promotional codes, sale promotions, BOGO (buy one, get one free), bundling, and others.
 This training will walk you through how to handle scenarios/conversations involving discounts and promotions.:
@@ -392,16 +395,3 @@ Mohammed Ramadan reacted with ✅ at 2025-06-13 09:28 AM
 [m]I prefer the above visualization even though it isn't a pretty chart. not sure if we should have both in here- want to hear nelo's thoughts
 [n]I'm not too hung up on it honestly since the viz above explains things pretty well.`
 };
-
-window.discountsContent = discountsContent;
-
-// Register with document registry
-if (window.documentRegistry) {
-    window.documentRegistry.registerDocument(discountsContent, 'content', 'conversationTopics', 'prePurchase');
-} else {
-    window.addEventListener('load', () => {
-        if (window.documentRegistry) {
-            window.documentRegistry.registerDocument(discountsContent, 'content', 'conversationTopics', 'prePurchase');
-        }
-    });
-}
