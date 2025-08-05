@@ -356,7 +356,7 @@ window.onload = function() {
                 let overallResultsFound = false;
 
                 // First, try enhanced search with document registry
-                if (window.documentRegistry) {
+                if (window.documentRegistry && window.documentRegistry.searchDocuments) {
                     console.log("Using document registry for search");
                     const searchResults = window.documentRegistry.searchDocuments(searchTerm);
                     console.log("Registry search results:", searchResults);

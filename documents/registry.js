@@ -159,12 +159,95 @@ class DocumentRegistry {
     }
 }
 
-// Create global instance
-window.documentRegistry = new DocumentRegistry();
+// Initialize window.documentRegistry as empty object if it doesn't exist
+window.documentRegistry = window.documentRegistry || {};
+
+// Create DocumentRegistry class instance and attach it to window.documentRegistry
+window.documentRegistry._instance = new DocumentRegistry();
+
+// Add convenience methods to the main registry object
+window.documentRegistry.searchDocuments = function(searchTerm) {
+    return window.documentRegistry._instance.searchDocuments(searchTerm);
+};
+
+window.documentRegistry.getDocument = function(id) {
+    return window.documentRegistry._instance.getDocument(id);
+};
+
+window.documentRegistry.getAllDocuments = function() {
+    return window.documentRegistry._instance.getAllDocuments();
+};
+
+window.documentRegistry.registerDocument = function(content, category, folder, subfolder) {
+    return window.documentRegistry._instance.registerDocument(content, category, folder, subfolder);
+};
+
+// Function to load documents from the flat window.documentRegistry object
+function loadDocumentsFromFlatRegistry() {
+    console.log('Loading documents from flat registry...');
+    
+    // Check if flat registry exists
+    if (!window.documentRegistry || typeof window.documentRegistry !== 'object') {
+        console.log('No flat registry found');
+        return;
+    }
+    
+    let loadedCount = 0;
+    
+    // Iterate through all documents in the flat registry
+    Object.keys(window.documentRegistry).forEach(key => {
+        const doc = window.documentRegistry[key];
+        
+        // Skip if it's the DocumentRegistry class instance or internal properties
+        if (key === '_instance' || typeof doc === 'function' || !doc || typeof doc !== 'object') {
+            return;
+        }
+        
+        // Skip if it doesn't have required fields
+        if (!doc.id || !doc.title) {
+            console.warn('Skipping invalid document:', key, doc);
+            return;
+        }
+        
+        // Register the document with the proper registry
+        try {
+            window.documentRegistry._instance.registerDocument(
+                doc,
+                doc.category || null,
+                doc.folder || null,
+                doc.subfolder || null
+            );
+            loadedCount++;
+        } catch (error) {
+            console.error('Error registering document:', doc.title, error);
+        }
+    });
+    
+    console.log(`Loaded ${loadedCount} documents from flat registry`);
+}
 
 // Add a loaded event for other scripts to know when registry is ready
 window.addEventListener('DOMContentLoaded', () => {
     console.log('DOM content loaded - Registry ready');
-    // Dispatch a custom event to notify that registry is ready
-    window.dispatchEvent(new CustomEvent('registryReady'));
+    
+    // Load documents from flat registry after a longer delay to ensure all document scripts have loaded
+    setTimeout(() => {
+        console.log('Current window.documentRegistry state:', Object.keys(window.documentRegistry));
+        loadDocumentsFromFlatRegistry();
+        console.log('Documents in registry after loading:', window.documentRegistry._instance.documents.size);
+        
+        // Dispatch a custom event to notify that registry is ready and loaded
+        window.dispatchEvent(new CustomEvent('registryReady'));
+    }, 500);
+});
+
+// Also try loading when window is fully loaded
+window.addEventListener('load', () => {
+    // Give it another try in case DOMContentLoaded was too early
+    setTimeout(() => {
+        if (window.documentRegistry._instance.documents.size === 0) {
+            console.log('Registry still empty, trying to load again...');
+            loadDocumentsFromFlatRegistry();
+        }
+    }, 200);
 });

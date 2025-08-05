@@ -353,45 +353,5 @@ STEP 4: BASKET
 	CRITICAL: Offer Alternatives! Is there any other valid code (Concierge, Promo Note, website) or current sale the customer is ELIGIBLE for and can use?
 	ALWAYS CHECK & OFFER.
 	If No Obvious Alternatives:
-	Apologize that no other current promotions fit their needs for this specific code issue. Follow brand notes for next steps by either escalating or sending to CS
-	________________
-
-
-  
-[m][n]
-[a]@awedekind@attentivemobile.com @lmahao@attentivemobile.com do you think this whole section is needed here? This would be in our SOP so it's repetative
-_Assigned to awedekind@attentivemobile.com_
-[b]This goes in a little bit more depth so maybe some elaborated parts can also be moved to SOP? Like after how long they're expected to respond to the cx.
-[c]Yup, we are going to revamp the SOP and we are going to go in depth, @nhrustanbegovic@attentivemobile.com is going to work on it. But also the time is listed there they just never read hahahha 
-
-
-Nadir can you copy this part and have it somewhere for when you revamp the SOP?
-1 total reaction
-Nadir Hrustanbegovic reacted with 🙌 at 2025-06-17 13:06 PM
-_Reassigned to nhrustanbegovic@attentivemobile.com_
-[d]would a screenshot be helpful here or is that overkill
-[e]@mramadan@attentivemobile.com lets add another bullet point here saying that if they enter a convo that has been posted by another agent in ops issues they're required to check for a resolution and respond even though they were not the ones that posted initially
-1 total reaction
-Mohammed Ramadan reacted with ✅ at 2025-06-13 09:14 AM
-_Assigned to mramadan@attentivemobile.com_
-[f]@lmahao@attentivemobile.com @awedekind@attentivemobile.com I'm a lil confused about this part here maybe because of the phrasing "but customer STILL reports issues". To me this sounds like we've followed up already. It's also confusing to me how we jump from here which seems like a resolution to the resolution section. 
-
-
-Overall I feel this part should go into the resolution part or completely removed as we touch on this there - so maybe parts of it can be moved there?
-_Assigned to lmahao@attentivemobile.com_
-[g]The phrasing is confusing for me as well. I'm not entirely sure I follow this part.  I actually don't think we need this part at all since we already mentioned asking for a screenshot under general troubleshooting. And I don't agree with asking them to try again with no extra spaces. Also another crucial part we're missing is always telling the cx what the promo exclusions are from the get-go, even when we need to probe.
-[h]I'm on board to remove this whole part as well. For the extra space though that is valid for some of our clients for sure but I think it's noted in templates that codes are case sensitive and spaces will affect if the code is applied or not 
-
-
-I agree about the promo exclusions and sharing those with the customer from the bat, we'll add it to the resolution steps
-[i]@mramadan@attentivemobile.com here, just to clarify quickly - how would they know if the code is supposed to work? would we have already probed about the items in their cart?
-1 total reaction
-Mohammed Ramadan reacted with ✅ at 2025-06-13 09:20 AM
-[j]The way I understand this document and it's flow is 1. we check if we know what the code is 2. We analyze what the issue might be following the ABCs and 3 we have the resolution here and what we need to follow up with the customer after all of our probing during stage 2 💞
-[k]I don't think this should be the first step. It's going to lead agents to just asking this without doing further research. So just because of how agents are if a cx comes in to say "my code isn't working" they'll just come back to say "did you enter it correctly" and do nothing else. I think it's best to include it under resolution - so things to look out for once we've gathered info and have a screenshot.
-1 total reaction
-Mohammed Ramadan reacted with ✅ at 2025-06-13 09:28 AM
-[l]I agree, first step is per our guide above check if we know which code the customer is talking about
-[m]I prefer the above visualization even though it isn't a pretty chart. not sure if we should have both in here- want to hear nelo's thoughts
-[n]I'm not too hung up on it honestly since the viz above explains things pretty well.`
+	Apologize that no other current promotions fit their needs for this specific code issue. Follow brand notes for next steps by either escalating or sending to CS`
 };
