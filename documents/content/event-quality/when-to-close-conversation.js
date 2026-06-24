@@ -24,7 +24,7 @@ Important differentiation
 
 * Close (cmd/ctrl + shift + enter): We use this feature for any of the situations that no longer require a reply
 * Close and Unsubscribe contact (shift + D): We only use this feature if a customer wants to be unsubscribed from our messages; more information can be found in the When to Unsubscribe document
-* Close and Blocklist contact (shift + B): We only use this feature if we’re blocking a customer; more information can be found in the When to Blocklist document
+* Close and Blocklist contact (shift + B): We only use this feature if we’re blocking a customer
 When do we close a conversation? 
 
 
@@ -153,4 +153,4 @@ When can you reply?
 // Register the document
 if (window.documentRegistry) {
     window.documentRegistry.registerDocument(whenToCloseConversationContent, 'content', 'eventQuality');
-} 
+}
