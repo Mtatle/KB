@@ -6,12 +6,20 @@ window.onload = function() {
     const docTitle = urlParams.get('title');
     const quizId = urlParams.get('quiz');
     const isTraining = urlParams.get('training');
+    const docTab = urlParams.get('tab');
+    const docHeading = urlParams.get('heading');
 
     let embedUrl = '';
 
     // Set the correct embed URL based on the type
     if (docType === 'doc') {
-        embedUrl = `https://docs.google.com/document/d/${docId}/preview`;
+        const docParams = new URLSearchParams();
+        if (docTab) {
+            docParams.set('tab', docTab);
+        }
+        const docQuery = docParams.toString() ? `?${docParams.toString()}` : '';
+        const docHash = docHeading ? `#heading=${encodeURIComponent(docHeading)}` : '';
+        embedUrl = `https://docs.google.com/document/d/${docId}/preview${docQuery}${docHash}`;
     } else if (docType === 'presentation') {
         embedUrl = `https://docs.google.com/presentation/d/${docId}/embed?start=false&loop=false&delayms=3000`;
     } else if (docType === 'form') {
