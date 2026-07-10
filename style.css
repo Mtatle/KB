@@ -470,32 +470,6 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     max-height: 100%;
 }
 
-.iframe-container.flowchart-viewer #doc-iframe {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    max-width: none;
-    max-height: none;
-    will-change: width, height, transform;
-}
-
-.flowchart-pan-layer {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.flowchart-viewer .flowchart-pan-layer {
-    pointer-events: auto;
-    cursor: grab;
-    touch-action: none;
-}
-
-.flowchart-viewer .flowchart-pan-layer.is-dragging {
-    cursor: grabbing;
-}
-
 /* Ensure burger menu is visible on viewer page */
 .viewer-body .burger-menu {
     position: fixed;

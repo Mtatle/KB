@@ -3,11 +3,11 @@ const flowChartsContent = {
     id: "1P-lmWB40EUTqgHVvbN-Ap0fCOlKFJ7V7",
     title: "Flow Charts",
     type: "flowchart",
-    description: "High-quality interactive flow charts with drag and scroll navigation",
+    description: "Flow charts in the native Google Drive viewer with high-quality zoom and panning",
     tags: ["flow charts", "flowchart", "workflow", "process", "interactive"],
     content: `Flow Charts
 
-Drag to move around the chart. Use the mouse wheel to move vertically, Shift + wheel to move horizontally, and Ctrl/Command + wheel to adjust the level of detail.`
+Use Google Drive's native controls to zoom and pan without browser-level image scaling. Ctrl/Command + wheel zooms directly in the Drive viewer.`
 };
 
 window.flowChartsContent = flowChartsContent;
