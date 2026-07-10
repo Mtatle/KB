@@ -1,26 +1,19 @@
 function initializeFlowchartViewer() {
     const viewport = document.getElementById('document-viewport');
     const iframe = document.getElementById('doc-iframe');
-    const toolbar = document.getElementById('flowchart-toolbar');
     const panLayer = document.getElementById('flowchart-pan-layer');
-    const zoomOutButton = document.getElementById('flowchart-zoom-out');
-    const zoomInButton = document.getElementById('flowchart-zoom-in');
-    const zoomLevel = document.getElementById('flowchart-zoom-level');
-    const handButton = document.getElementById('flowchart-hand-tool');
-    const resetButton = document.getElementById('flowchart-reset');
 
-    if (!viewport || !iframe || !toolbar || !panLayer || !zoomOutButton ||
-        !zoomInButton || !zoomLevel || !handButton || !resetButton) {
+    if (!viewport || !iframe || !panLayer) {
         return;
     }
 
-    const MIN_SCALE = 0.5;
+    const DEFAULT_SCALE = 1.5;
+    const MIN_SCALE = 1;
     const MAX_SCALE = 3;
     const SCALE_STEP = 0.25;
-    let scale = 1;
+    let scale = DEFAULT_SCALE;
     let panX = 0;
     let panY = 0;
-    let handToolActive = true;
     let dragStart = null;
 
     function clamp(value, min, max) {
@@ -36,11 +29,9 @@ function initializeFlowchartViewer() {
 
     function renderTransform() {
         clampPan();
-        iframe.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`;
-        zoomLevel.value = `${Math.round(scale * 100)}%`;
-        zoomLevel.textContent = zoomLevel.value;
-        zoomOutButton.disabled = scale <= MIN_SCALE;
-        zoomInButton.disabled = scale >= MAX_SCALE;
+        iframe.style.width = `${scale * 100}%`;
+        iframe.style.height = `${scale * 100}%`;
+        iframe.style.transform = `translate(-50%, -50%) translate3d(${panX}px, ${panY}px, 0)`;
     }
 
     function setScale(nextScale) {
@@ -48,32 +39,17 @@ function initializeFlowchartViewer() {
         renderTransform();
     }
 
-    function setHandTool(active) {
-        handToolActive = active;
-        viewport.classList.toggle('hand-tool-active', handToolActive);
-        handButton.setAttribute('aria-pressed', String(handToolActive));
-        panLayer.setAttribute('aria-hidden', String(!handToolActive));
-    }
-
-    function resetView() {
-        scale = 1;
+    function centerView() {
         panX = 0;
         panY = 0;
         renderTransform();
     }
 
     viewport.classList.add('flowchart-viewer');
-    toolbar.hidden = false;
-    setHandTool(true);
     renderTransform();
 
-    zoomOutButton.addEventListener('click', () => setScale(scale - SCALE_STEP));
-    zoomInButton.addEventListener('click', () => setScale(scale + SCALE_STEP));
-    handButton.addEventListener('click', () => setHandTool(!handToolActive));
-    resetButton.addEventListener('click', resetView);
-
     panLayer.addEventListener('pointerdown', event => {
-        if (!handToolActive || event.button !== 0) {
+        if (event.button !== 0) {
             return;
         }
 
@@ -111,34 +87,32 @@ function initializeFlowchartViewer() {
     panLayer.addEventListener('pointercancel', stopDragging);
 
     panLayer.addEventListener('wheel', event => {
-        if (!event.ctrlKey && !event.metaKey) {
+        event.preventDefault();
+
+        if (event.ctrlKey || event.metaKey) {
+            setScale(scale + (event.deltaY < 0 ? SCALE_STEP : -SCALE_STEP));
             return;
         }
 
-        event.preventDefault();
-        setScale(scale + (event.deltaY < 0 ? SCALE_STEP : -SCALE_STEP));
+        const deltaMultiplier = event.deltaMode === WheelEvent.DOM_DELTA_LINE
+            ? 16
+            : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+                ? viewport.clientHeight
+                : 1;
+        const deltaX = event.deltaX * deltaMultiplier;
+        const deltaY = event.deltaY * deltaMultiplier;
+
+        if (event.shiftKey && deltaX === 0) {
+            panX -= deltaY;
+        } else {
+            panX -= deltaX;
+            panY -= deltaY;
+        }
+        renderTransform();
     }, { passive: false });
 
+    panLayer.addEventListener('dblclick', centerView);
     window.addEventListener('resize', renderTransform);
-    window.addEventListener('keydown', event => {
-        if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
-            return;
-        }
-
-        if (event.key === '+' || event.key === '=') {
-            event.preventDefault();
-            setScale(scale + SCALE_STEP);
-        } else if (event.key === '-') {
-            event.preventDefault();
-            setScale(scale - SCALE_STEP);
-        } else if (event.key === '0') {
-            event.preventDefault();
-            resetView();
-        } else if (event.key.toLowerCase() === 'h') {
-            event.preventDefault();
-            setHandTool(!handToolActive);
-        }
-    });
 }
 
 window.onload = function() {

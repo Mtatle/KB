@@ -3,11 +3,11 @@ const flowChartsContent = {
     id: "1P-lmWB40EUTqgHVvbN-Ap0fCOlKFJ7V7",
     title: "Flow Charts",
     type: "flowchart",
-    description: "Interactive flow charts with zoom and hand-tool navigation",
+    description: "High-quality interactive flow charts with drag and scroll navigation",
     tags: ["flow charts", "flowchart", "workflow", "process", "interactive"],
     content: `Flow Charts
 
-Use the zoom controls to inspect the chart and the hand tool to drag it around the viewer.`
+Drag to move around the chart. Use the mouse wheel to move vertically, Shift + wheel to move horizontally, and Ctrl/Command + wheel to adjust the level of detail.`
 };
 
 window.flowChartsContent = flowChartsContent;
