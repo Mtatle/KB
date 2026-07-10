@@ -455,6 +455,7 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     width: 100vw;
     height: calc(100vh - 56px);
     z-index: 1;
+    overflow: hidden;
 }
 
 #doc-iframe {
@@ -467,6 +468,108 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     object-fit: contain;
     max-width: 100%;
     max-height: 100%;
+}
+
+.iframe-container.flowchart-viewer #doc-iframe {
+    transform-origin: center center;
+    will-change: transform;
+}
+
+.flowchart-pan-layer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.flowchart-viewer.hand-tool-active .flowchart-pan-layer {
+    pointer-events: auto;
+    cursor: grab;
+    touch-action: none;
+}
+
+.flowchart-viewer.hand-tool-active .flowchart-pan-layer.is-dragging {
+    cursor: grabbing;
+}
+
+.flowchart-toolbar {
+    position: absolute;
+    top: 16px;
+    left: 50%;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transform: translateX(-50%);
+    padding: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.96);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(8px);
+}
+
+.flowchart-toolbar[hidden] {
+    display: none;
+}
+
+.flowchart-control {
+    min-width: 36px;
+    height: 36px;
+    padding: 0 10px;
+    border: 0;
+    border-radius: 8px;
+    background: transparent;
+    color: #2d3748;
+    font: 600 0.85rem Montserrat, sans-serif;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.flowchart-control:hover,
+.flowchart-control:focus-visible {
+    background: #fff381;
+    outline: none;
+}
+
+.flowchart-control[aria-pressed="true"] {
+    background: #ffc400;
+    color: #1a202c;
+}
+
+.flowchart-zoom-level {
+    min-width: 52px;
+    color: #4a5568;
+    font: 600 0.8rem Montserrat, sans-serif;
+    text-align: center;
+}
+
+.flowchart-toolbar-divider {
+    width: 1px;
+    height: 24px;
+    margin: 0 2px;
+    background: #e2e8f0;
+}
+
+.flowchart-reset {
+    min-width: auto;
+}
+
+.flowchart-help {
+    padding: 0 8px 0 4px;
+    color: #718096;
+    font: 500 0.72rem Montserrat, sans-serif;
+    white-space: nowrap;
+}
+
+@media (max-width: 700px) {
+    .flowchart-toolbar {
+        top: 10px;
+    }
+
+    .flowchart-help {
+        display: none;
+    }
 }
 
 /* Ensure burger menu is visible on viewer page */

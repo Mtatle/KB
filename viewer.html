@@ -196,6 +196,14 @@
                                     </a>
                                 </div>
                             </div>
+                            <div class="sidebar-subfolder-item" data-subfolder="flow-charts">
+                                Flow Charts
+                                <div class="sidebar-file-list">
+                                    <a href="viewer.html?id=1P-lmWB40EUTqgHVvbN-Ap0fCOlKFJ7V7&amp;type=flowchart&amp;title=Flow%20Charts" class="sidebar-file">
+                                        <i class="fas fa-diagram-project"></i> Flow Charts
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="sidebar-submenu-item" data-folder="event-quality">
@@ -444,8 +452,26 @@
             <h1 id="document-title">Loading...</h1>
             <a id="quiz-button" class="quiz-button" style="display: none;">Quiz</a>
         </header>
-        <div class="iframe-container">
+        <div class="iframe-container" id="document-viewport">
             <iframe id="doc-iframe" src="" frameborder="0"></iframe>
+            <div id="flowchart-pan-layer" class="flowchart-pan-layer" aria-hidden="true"></div>
+            <div id="flowchart-toolbar" class="flowchart-toolbar" role="toolbar" aria-label="Flow chart navigation controls" hidden>
+                <button id="flowchart-zoom-out" class="flowchart-control" type="button" aria-label="Zoom out" title="Zoom out (-)">
+                    <i class="fas fa-minus" aria-hidden="true"></i>
+                </button>
+                <output id="flowchart-zoom-level" class="flowchart-zoom-level" aria-live="polite">100%</output>
+                <button id="flowchart-zoom-in" class="flowchart-control" type="button" aria-label="Zoom in" title="Zoom in (+)">
+                    <i class="fas fa-plus" aria-hidden="true"></i>
+                </button>
+                <span class="flowchart-toolbar-divider" aria-hidden="true"></span>
+                <button id="flowchart-hand-tool" class="flowchart-control" type="button" aria-label="Toggle hand tool" aria-pressed="true" title="Toggle hand tool (H)">
+                    <i class="fas fa-hand" aria-hidden="true"></i>
+                </button>
+                <button id="flowchart-reset" class="flowchart-control flowchart-reset" type="button" aria-label="Reset zoom and position" title="Reset zoom and position (0)">
+                    Reset
+                </button>
+                <span class="flowchart-help">Drag to move · Ctrl/⌘ + scroll to zoom</span>
+            </div>
         </div>
     </div>
 

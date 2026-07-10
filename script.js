@@ -1,3 +1,146 @@
+function initializeFlowchartViewer() {
+    const viewport = document.getElementById('document-viewport');
+    const iframe = document.getElementById('doc-iframe');
+    const toolbar = document.getElementById('flowchart-toolbar');
+    const panLayer = document.getElementById('flowchart-pan-layer');
+    const zoomOutButton = document.getElementById('flowchart-zoom-out');
+    const zoomInButton = document.getElementById('flowchart-zoom-in');
+    const zoomLevel = document.getElementById('flowchart-zoom-level');
+    const handButton = document.getElementById('flowchart-hand-tool');
+    const resetButton = document.getElementById('flowchart-reset');
+
+    if (!viewport || !iframe || !toolbar || !panLayer || !zoomOutButton ||
+        !zoomInButton || !zoomLevel || !handButton || !resetButton) {
+        return;
+    }
+
+    const MIN_SCALE = 0.5;
+    const MAX_SCALE = 3;
+    const SCALE_STEP = 0.25;
+    let scale = 1;
+    let panX = 0;
+    let panY = 0;
+    let handToolActive = true;
+    let dragStart = null;
+
+    function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+    }
+
+    function clampPan() {
+        const maxPanX = Math.max(0, viewport.clientWidth * (scale - 1) / 2);
+        const maxPanY = Math.max(0, viewport.clientHeight * (scale - 1) / 2);
+        panX = clamp(panX, -maxPanX, maxPanX);
+        panY = clamp(panY, -maxPanY, maxPanY);
+    }
+
+    function renderTransform() {
+        clampPan();
+        iframe.style.transform = `translate3d(${panX}px, ${panY}px, 0) scale(${scale})`;
+        zoomLevel.value = `${Math.round(scale * 100)}%`;
+        zoomLevel.textContent = zoomLevel.value;
+        zoomOutButton.disabled = scale <= MIN_SCALE;
+        zoomInButton.disabled = scale >= MAX_SCALE;
+    }
+
+    function setScale(nextScale) {
+        scale = clamp(nextScale, MIN_SCALE, MAX_SCALE);
+        renderTransform();
+    }
+
+    function setHandTool(active) {
+        handToolActive = active;
+        viewport.classList.toggle('hand-tool-active', handToolActive);
+        handButton.setAttribute('aria-pressed', String(handToolActive));
+        panLayer.setAttribute('aria-hidden', String(!handToolActive));
+    }
+
+    function resetView() {
+        scale = 1;
+        panX = 0;
+        panY = 0;
+        renderTransform();
+    }
+
+    viewport.classList.add('flowchart-viewer');
+    toolbar.hidden = false;
+    setHandTool(true);
+    renderTransform();
+
+    zoomOutButton.addEventListener('click', () => setScale(scale - SCALE_STEP));
+    zoomInButton.addEventListener('click', () => setScale(scale + SCALE_STEP));
+    handButton.addEventListener('click', () => setHandTool(!handToolActive));
+    resetButton.addEventListener('click', resetView);
+
+    panLayer.addEventListener('pointerdown', event => {
+        if (!handToolActive || event.button !== 0) {
+            return;
+        }
+
+        dragStart = {
+            pointerId: event.pointerId,
+            x: event.clientX,
+            y: event.clientY,
+            panX,
+            panY
+        };
+        panLayer.setPointerCapture(event.pointerId);
+        panLayer.classList.add('is-dragging');
+    });
+
+    panLayer.addEventListener('pointermove', event => {
+        if (!dragStart || event.pointerId !== dragStart.pointerId) {
+            return;
+        }
+
+        panX = dragStart.panX + event.clientX - dragStart.x;
+        panY = dragStart.panY + event.clientY - dragStart.y;
+        renderTransform();
+    });
+
+    function stopDragging(event) {
+        if (!dragStart || event.pointerId !== dragStart.pointerId) {
+            return;
+        }
+
+        dragStart = null;
+        panLayer.classList.remove('is-dragging');
+    }
+
+    panLayer.addEventListener('pointerup', stopDragging);
+    panLayer.addEventListener('pointercancel', stopDragging);
+
+    panLayer.addEventListener('wheel', event => {
+        if (!event.ctrlKey && !event.metaKey) {
+            return;
+        }
+
+        event.preventDefault();
+        setScale(scale + (event.deltaY < 0 ? SCALE_STEP : -SCALE_STEP));
+    }, { passive: false });
+
+    window.addEventListener('resize', renderTransform);
+    window.addEventListener('keydown', event => {
+        if (event.target instanceof HTMLInputElement || event.target instanceof HTMLTextAreaElement) {
+            return;
+        }
+
+        if (event.key === '+' || event.key === '=') {
+            event.preventDefault();
+            setScale(scale + SCALE_STEP);
+        } else if (event.key === '-') {
+            event.preventDefault();
+            setScale(scale - SCALE_STEP);
+        } else if (event.key === '0') {
+            event.preventDefault();
+            resetView();
+        } else if (event.key.toLowerCase() === 'h') {
+            event.preventDefault();
+            setHandTool(!handToolActive);
+        }
+    });
+}
+
 window.onload = function() {
     // Get parameters from the URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -28,6 +171,8 @@ window.onload = function() {
         embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
     } else if (docType === 'video') {
         embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
+    } else if (docType === 'flowchart') {
+        embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
     }
 
     // Update the page with the correct title and iframe source
@@ -44,6 +189,10 @@ window.onload = function() {
         // Set the source for the iframe
         if (iframeElement) { // Check if iframeElement is not null
             iframeElement.src = embedUrl;
+        }
+
+        if (docType === 'flowchart') {
+            initializeFlowchartViewer();
         }
 
         // Handle quiz section for training presentations
@@ -481,6 +630,8 @@ window.onload = function() {
                     icon = '<i class="fas fa-file-powerpoint" style="color: #FF6B6B; margin-right: 10px;"></i>';
                 } else if (result.document.type === 'doc') {
                     icon = '<i class="fas fa-file-alt" style="color: #4285F4; margin-right: 10px;"></i>';
+                } else if (result.document.type === 'flowchart') {
+                    icon = '<i class="fas fa-diagram-project" style="color: #805AD5; margin-right: 10px;"></i>';
                 } else if (result.document.type === 'folder') {
                     icon = '<i class="fas fa-folder" style="color: #FFC857; margin-right: 10px;"></i>';
                 }

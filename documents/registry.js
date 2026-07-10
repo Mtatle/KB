@@ -28,6 +28,7 @@ class DocumentRegistry {
                             subfolders: {
                                 prePurchase: { title: "Pre-Purchase", documents: [] },
                                 postPurchase: { title: "Post-Purchase", documents: [] },
+                                flowCharts: { title: "Flow Charts", documents: [] },
                                 general: { title: "General", documents: [] }
                             },
                             documents: []
