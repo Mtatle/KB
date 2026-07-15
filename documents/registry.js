@@ -57,6 +57,11 @@ class DocumentRegistry {
             console.error('Invalid document content passed to registry:', content);
             return;
         }
+
+        // Archived documents stay in source control but never enter the searchable registry.
+        if (window.kbArchive && window.kbArchive.isDocumentArchived(content, category)) {
+            return;
+        }
         
         // Store in the flat map for search
         this.documents.set(content.id, content);
@@ -98,6 +103,10 @@ class DocumentRegistry {
         }
 
         this.documents.forEach((doc) => {
+            if (window.kbArchive && window.kbArchive.isDocumentArchived(doc)) {
+                return;
+            }
+
             let score = 0;
             let matchDetails = [];
 
@@ -152,11 +161,17 @@ class DocumentRegistry {
     }
 
     getDocument(id) {
+        if (window.kbArchive && window.kbArchive.isDocumentArchived(id)) {
+            return undefined;
+        }
+
         return this.documents.get(id);
     }
 
     getAllDocuments() {
-        return Array.from(this.documents.values());
+        return Array.from(this.documents.values()).filter((document) => {
+            return !window.kbArchive || !window.kbArchive.isDocumentArchived(document);
+        });
     }
 }
 

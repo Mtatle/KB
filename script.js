@@ -8,11 +8,14 @@ window.onload = function() {
     const isTraining = urlParams.get('training');
     const docTab = urlParams.get('tab');
     const docHeading = urlParams.get('heading');
+    const isArchivedRequest = urlParams.get('archived') === 'true' || Boolean(
+        docId && window.kbArchive && window.kbArchive.isDocumentArchived(docId)
+    );
 
     let embedUrl = '';
 
     // Set the correct embed URL based on the type
-    if (docType === 'doc') {
+    if (!isArchivedRequest && docType === 'doc') {
         const docParams = new URLSearchParams();
         if (docTab) {
             docParams.set('tab', docTab);
@@ -20,48 +23,69 @@ window.onload = function() {
         const docQuery = docParams.toString() ? `?${docParams.toString()}` : '';
         const docHash = docHeading ? `#heading=${encodeURIComponent(docHeading)}` : '';
         embedUrl = `https://docs.google.com/document/d/${docId}/preview${docQuery}${docHash}`;
-    } else if (docType === 'presentation') {
+    } else if (!isArchivedRequest && docType === 'presentation') {
         embedUrl = `https://docs.google.com/presentation/d/${docId}/embed?start=false&loop=false&delayms=3000`;
-    } else if (docType === 'form') {
+    } else if (!isArchivedRequest && docType === 'form') {
         embedUrl = `https://docs.google.com/forms/d/${docId}/viewform?embedded=true`;
-    } else if (docType === 'pdf') {
+    } else if (!isArchivedRequest && docType === 'pdf') {
         embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
-    } else if (docType === 'video') {
+    } else if (!isArchivedRequest && docType === 'video') {
         embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
-    } else if (docType === 'flowchart') {
+    } else if (!isArchivedRequest && docType === 'flowchart') {
         embedUrl = `https://drive.google.com/file/d/${docId}/preview`;
     }
 
     // Update the page with the correct title and iframe source
-    if (docId) { // This block is for viewer.html
+    if (docId || isArchivedRequest) { // This block is for viewer.html
         const titleElement = document.getElementById('document-title');
         const iframeElement = document.getElementById('doc-iframe');
 
-        // Set the document title in the header and the browser tab
-        if (document.title && titleElement) { // Check if titleElement is not null
-            document.title = docTitle;
-            titleElement.textContent = docTitle;
-        }
-            
-        // Set the source for the iframe
-        if (iframeElement) { // Check if iframeElement is not null
-            iframeElement.src = embedUrl;
-        }
-
-        // Handle quiz section for training presentations
-        if (isTraining === 'true' && quizId) {
+        if (isArchivedRequest) {
+            const viewportElement = document.getElementById('document-viewport');
             const quizButton = document.getElementById('quiz-button');
-            
+
+            document.title = 'Content unavailable';
+            if (titleElement) {
+                titleElement.textContent = 'Content unavailable';
+            }
             if (quizButton) {
-                // Show the quiz button
-                quizButton.style.display = 'inline-block';
-                quizButton.textContent = docTitle + ' Quiz';
-                
-                // Add click handler to open quiz
-                quizButton.addEventListener('click', function() {
-                    const quizUrl = `viewer.html?id=${quizId}&type=form&title=${encodeURIComponent(docTitle + ' Quiz')}`;
-                    window.location.href = quizUrl;
-                });
+                quizButton.style.display = 'none';
+            }
+            if (viewportElement) {
+                viewportElement.innerHTML = '<div class="archive-notice">This content is currently unavailable.</div>';
+            }
+
+            // Remove archived document details from the address bar and support refreshes.
+            if (urlParams.get('archived') !== 'true') {
+                window.history.replaceState(null, '', 'viewer.html?archived=true');
+            }
+        } else {
+            // Set the document title in the header and the browser tab
+            if (document.title && titleElement) { // Check if titleElement is not null
+                document.title = docTitle;
+                titleElement.textContent = docTitle;
+            }
+
+            // Set the source for the iframe
+            if (iframeElement) { // Check if iframeElement is not null
+                iframeElement.src = embedUrl;
+            }
+
+            // Handle quiz section for training presentations
+            if (isTraining === 'true' && quizId) {
+                const quizButton = document.getElementById('quiz-button');
+
+                if (quizButton) {
+                    // Show the quiz button
+                    quizButton.style.display = 'inline-block';
+                    quizButton.textContent = docTitle + ' Quiz';
+
+                    // Add click handler to open quiz
+                    quizButton.addEventListener('click', function() {
+                        const quizUrl = `viewer.html?id=${quizId}&type=form&title=${encodeURIComponent(docTitle + ' Quiz')}`;
+                        window.location.href = quizUrl;
+                    });
+                }
             }
         }
 

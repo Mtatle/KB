@@ -470,6 +470,19 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     max-height: 100%;
 }
 
+.archive-notice {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f7f7f7;
+    color: #4a5568;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
 /* Ensure burger menu is visible on viewer page */
 .viewer-body .burger-menu {
     position: fixed;
