@@ -1,3 +1,18 @@
+function buildViewerUrl(document) {
+    const params = new URLSearchParams({
+        id: document.id,
+        type: document.type,
+        title: document.title
+    });
+
+    if (document.category === 'training' && document.quiz) {
+        params.set('quiz', document.quiz);
+        params.set('training', 'true');
+    }
+
+    return `viewer.html?${params.toString()}`;
+}
+
 window.onload = function() {
     // Get parameters from the URL
     const urlParams = new URLSearchParams(window.location.search);
@@ -558,7 +573,7 @@ window.onload = function() {
                 if (result.document.id) {
                     resultCard.addEventListener('click', function() {
                         // Open the document in viewer
-                        window.open(`viewer.html?id=${result.document.id}&type=${result.document.type}&title=${encodeURIComponent(result.document.title)}`, '_blank');
+                        window.open(buildViewerUrl(result.document), '_blank');
                     });
                     
                     // Hover effect
