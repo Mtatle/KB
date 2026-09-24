@@ -1,3 +1,6 @@
+// Keep quiz buttons hidden while the training quizzes are under review.
+const trainingQuizzesEnabled = false;
+
 function buildViewerUrl(document) {
     const params = new URLSearchParams({
         id: document.id,
@@ -87,7 +90,7 @@ window.onload = function() {
             }
 
             // Handle quiz section for training presentations
-            if (isTraining === 'true' && quizId) {
+            if (trainingQuizzesEnabled && isTraining === 'true' && quizId) {
                 const quizButton = document.getElementById('quiz-button');
 
                 if (quizButton) {
