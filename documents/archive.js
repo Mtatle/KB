@@ -2,7 +2,9 @@
 (function() {
     const archivedCategories = new Set();
 
-    const archivedDocumentIds = new Set();
+    const archivedDocumentIds = new Set([
+        '1qj6voHaFiOS55gPm3yjwY6GrtoUwG7ND4jn3KtQFkCM' // Handling AI Conversation
+    ]);
 
     window.kbArchive = Object.freeze({
         isCategoryArchived(category) {
