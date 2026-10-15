@@ -3,7 +3,8 @@
     const archivedCategories = new Set();
 
     const archivedDocumentIds = new Set([
-        '1qj6voHaFiOS55gPm3yjwY6GrtoUwG7ND4jn3KtQFkCM' // Handling AI Conversation
+        '1qj6voHaFiOS55gPm3yjwY6GrtoUwG7ND4jn3KtQFkCM', // Handling AI Conversation
+        '1BxDB_wDN1TjM4qP9RSljL5JcHKpii0DJOHMaufTGYj8' // TL monthly meeting deck mislabeled as a promo flowchart
     ]);
 
     window.kbArchive = Object.freeze({

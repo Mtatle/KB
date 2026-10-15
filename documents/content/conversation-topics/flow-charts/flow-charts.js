@@ -3,11 +3,17 @@ const flowChartsContent = {
     id: "1TAGsxDjV0WHbBMco0xA5u_QqHMUKta7y",
     title: "Flow Charts",
     type: "flowchart",
-    description: "Flow charts in the native Google Drive viewer with high-quality zoom and panning",
-    tags: ["flow charts", "flowchart", "workflow", "process", "interactive"],
+    description: "Updated flow charts for order issues, unconfirmed orders, confirmed orders, and promotion troubleshooting",
+    tags: ["flow charts", "flowchart", "workflow", "process", "orders", "promo", "promotions", "troubleshooting"],
     content: `Flow Charts
 
-Use Google Drive's native controls to zoom and pan without browser-level image scaling. Ctrl/Command + wheel zooms directly in the Drive viewer.`
+Updated four-page PDF covering:
+1. Order Issues
+2. Unconfirmed Orders
+3. Confirmed Orders
+4. Promotion Troubleshooting
+
+Use the PDF viewer controls to zoom and navigate between pages.`
 };
 
 window.flowChartsContent = flowChartsContent;

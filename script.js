@@ -31,9 +31,13 @@ window.onload = function() {
     );
 
     let embedUrl = '';
+    // Keep existing Flow Charts links working while serving the updated PDF from this site.
+    const isLocalFlowCharts = docId === '1TAGsxDjV0WHbBMco0xA5u_QqHMUKta7y';
 
     // Set the correct embed URL based on the type
-    if (!isArchivedRequest && docType === 'doc') {
+    if (!isArchivedRequest && isLocalFlowCharts) {
+        embedUrl = 'documents/content/conversation-topics/flow-charts/flow-charts.pdf';
+    } else if (!isArchivedRequest && docType === 'doc') {
         const docParams = new URLSearchParams();
         if (docTab) {
             docParams.set('tab', docTab);
@@ -87,6 +91,13 @@ window.onload = function() {
             // Set the source for the iframe
             if (iframeElement) { // Check if iframeElement is not null
                 iframeElement.src = embedUrl;
+            }
+
+            // Offer direct PDF access for browsers that cannot display an embedded PDF.
+            const pdfLink = document.getElementById('pdf-link');
+            if (pdfLink && isLocalFlowCharts) {
+                pdfLink.href = embedUrl;
+                pdfLink.hidden = false;
             }
 
             // Handle quiz section for training presentations

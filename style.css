@@ -430,6 +430,15 @@ main h2::before { /* Adding space for icons if they were to be added via CSS */
     justify-self: start;
 }
 
+.document-link {
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: 600;
+    grid-column: 3;
+    justify-self: end;
+}
+
 .quiz-button {
     font-size: 0.9rem;
     color: #fff;
