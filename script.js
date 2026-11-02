@@ -32,11 +32,12 @@ window.onload = function() {
 
     let embedUrl = '';
     // Keep existing Flow Charts links working while serving the updated PDF from this site.
-    const isLocalFlowCharts = docId === '1TAGsxDjV0WHbBMco0xA5u_QqHMUKta7y';
+    const flowchart = window.flowChartsContent;
+    const isLocalFlowCharts = flowchart && flowchart.id === docId && Boolean(flowchart.fileUrl);
 
     // Set the correct embed URL based on the type
     if (!isArchivedRequest && isLocalFlowCharts) {
-        embedUrl = 'documents/content/conversation-topics/flow-charts/flow-charts.pdf';
+        embedUrl = `${flowchart.fileUrl}#view=FitH`;
     } else if (!isArchivedRequest && docType === 'doc') {
         const docParams = new URLSearchParams();
         if (docTab) {
